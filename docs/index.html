@@ -24,124 +24,425 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>
-                    <section data-transition="none" data-transition-speed="fast">				
-				    <pre><code data-trim data-noescape class="json atom-one-dark">
-{
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "id": "20170104N205JPKNQAKADS",
-            "positionTime": "2017-01-04T20:23:14.000Z",
-            "altitude": 30,
-            "speed": 144,
-            "flight": {
-                "tailNumber": "N205JP",
-                "departure": {
-                    "city": "KNQA",
-                    "scheduledTime": "2017-01-04T16:55:00.000Z", 
-                    "actualTime": "2017-01-04T17:48:00.000Z"
-                },
-                "arrival": {
-                    "city": "KADS",
-                    "scheduledTime": "2017-01-04T19:23:00.000Z"
-                },
-                "aircraftType": "PA46"
-            }
-        },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-96.6833, 32.9833]
-        }
-    }, {
-        "type": "Feature",
-        "properties": {
-            "id": "20161231N45HMKMAFKADS",
-            "positionTime": "2017-01-04T20:23:00.000Z",
-            "altitude": 123,
-            "speed": 386,
-            "flight": {
-                "tailNumber": "N45HM",
-                "departure": {
-                    "city": "KMAF",
-                    "scheduledTime": "2017-01-04T20:00:00.000Z", 
-                    "actualTime": "2017-01-04T20:19:00.000Z"
-                },
-                "arrival": {
-                    "city": "KADS",
-                    "scheduledTime": "2017-01-04T20:46:00.000Z"
-                },
-                "aircraftType": "LJ45"
-            }
-        },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-101.9052, 31.9501]
-        }
-    }]
-}           				        
-                    </code></pre>
+                <section>Introduction to Geospatial Data in Java</section>
+                <section>
+                    <h2>What is geospatial?</h2>
+                    <img class="fragment" data-src="./images/geospatial_definition.png" width="50%"></img>
+                </section>
+                <section>
+                    <h2>My history with geospatial</h2>
+                    <p class="fragment">Family Navigator</p>
+                    <p class="fragment">Boy Scout Orienteering</p>
+                    <p class="fragment">Southwest Airlines</p>
+                    <p class="fragment">Geocaching</p>
+                    <p class="fragment">Hacking</p>
+                    <p class="fragment">FltCk</p>
+                </section>
+                <section>
+	                <section>
+	                    <h2>How is geospatial used</h2>
+	                    <ul>
+                           <li>Transportation/Logistics</li>
+                           <li>Aviation</li>
+                           <li>Government</li>
+                           <li>Law Enforcement</li>
+                           <li>Medical</li>
+                           <li>Real Estate</li>
+                           <li>Retail/eCommerce</li>
+                           <li>Banking</li>
+	                    </ul>
 	                </section>
-	                <section data-transition="none" data-transition-speed="fast">
-                    <pre><code data-trim data-noescape class="json atom-one-dark">
+                </section>
+                <section>
+                    <section>
+                        <h2>Basic building blocks</h2>
+                    </section>
+                    <section data-transition="slide-in none-out">
+	                        <h2>Latitude / Longitude</h2>                        
+	                        <div class="fragment">
+	                            <ul>
+	                                <li class="mono">33° 4′ 40″ N 96° 48′ 36″ W</li>
+	                                <li class="mono">33° 4.66554′ N 96° 48.59502′ W</li>
+	                                <li class="mono">33.077759° N 96.809917° W</li>
+	                                <li class="mono">-96.809917,33.077759</li>
+	                            </ul>
+	                        </div>
+                    </section>
+                    <section>
+                            <h2>Latitude / Longitude</h2>                        
+                            <h4>A note on precision</h4>
+                            <blockquote>The metre was originally defined in 1793 as one ten-millionth of the distance from the equator to the North Pole. - Wikipedia</blockquote>
+                            <div class="fragment">
+			                    <table>
+			                        <thead>
+			                            <tr>
+			                                <th>Place</th>
+			                                <th>Degrees</th>
+                                            <th>Distance</th>
+			                            </tr>
+			                        </thead>
+			                        <tbody class="mono smallfont">
+			                            <tr>
+			                                <td>0</td>
+			                                <td>1</td>
+			                                <td>111 km</td>
+			                            </tr>
+			                            <tr>
+			                                <td>1</td>
+			                                <td>0.1</td>
+			                                <td>11.1 km</td>
+			                            </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>0.01</td>
+                                            <td>1.11 km</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>0.001</td>
+                                            <td>111 m</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>0.0001</td>
+                                            <td>11.1 m</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>0.00001</td>
+                                            <td>1.11 m</td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>0.000001</td>
+                                            <td>11.1 cm</td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td>0.0000001</td>
+                                            <td>1.11 cm</td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td>0.00000001</td>
+                                            <td>1.11 mm</td>
+                                        </tr>
+			                        </tbody>
+			                    </table>
+                            </div>
+                    </section>
+                    <section>
+                        <h2>Address</h2>
+                        <div class="fragment">
+                            <span>5445 Legacy Dr #100.</span>
+                            <span>Plano, TX 75024</span>
+                        </div>
+                        <div class="fragment">
+                            <pre>https://api.mapbox.com/geocoding/v5/mapbox.places/{address}.json?access_token={your_token}</pre>
+                        </div>
+                    </section>
+                    <section><h1>code</h1></section>
+                    <section data-transition="slide-in none-out">
+                    <h2>GeoJson</h2>              
+                    <pre><code data-trim data-noescape class="json atom-one-dark fill">
 {
-    "type": "FeatureCollection",
-    "features": [{
-        <mark>"type": "Feature",</mark>
-        "properties": {
-            "id": "20170104N205JPKNQAKADS",
-            "positionTime": "2017-01-04T20:23:14.000Z",
-            "altitude": 30,
-            "speed": 144,
-            "flight": {
-                "tailNumber": "N205JP",
-                "departure": {
-                    "city": "KNQA",
-                    "scheduledTime": "2017-01-04T16:55:00.000Z", 
-                    "actualTime": "2017-01-04T17:48:00.000Z"
-                },
-                "arrival": {
-                    "city": "KADS",
-                    "scheduledTime": "2017-01-04T19:23:00.000Z"
-                },
-                "aircraftType": "PA46"
-            }
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "address": {
+          "line1": "5445 Legacy Dr #100",
+          "city": "Plano",
+          "state": "TX",
+          "zipCode": "75024"
         },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-96.6833, 32.9833]
-        }
-    }, {
-        "type": "Feature",
-        "properties": {
-            "id": "20161231N45HMKMAFKADS",
-            "positionTime": "2017-01-04T20:23:00.000Z",
-            "altitude": 123,
-            "speed": 386,
-            "flight": {
-                "tailNumber": "N45HM",
-                "departure": {
-                    "city": "KMAF",
-                    "scheduledTime": "2017-01-04T20:00:00.000Z", 
-                    "actualTime": "2017-01-04T20:19:00.000Z"
-                },
-                "arrival": {
-                    "city": "KADS",
-                    "scheduledTime": "2017-01-04T20:46:00.000Z"
-                },
-                "aircraftType": "LJ45"
-            }
-        },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-101.9052, 31.9501]
-        }
-    }]
+        "name": "JavaMUG"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.809917,
+          33.077759
+        ]
+      }
+    }
+  ]
 }                                   
                     </code></pre>
                     </section>
+                    <section data-transition="none">
+                    <h2>GeoJson</h2>              
+                    <pre><code data-trim data-noescape class="json atom-one-dark fill">
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      <mark>"type": "Feature",</mark>
+      "properties": {
+        "address": {
+          "line1": "5445 Legacy Dr #100",
+          "city": "Plano",
+          "state": "TX",
+          "zipCode": "75024"
+        },
+        "name": "JavaMUG"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.809917,
+          33.077759
+        ]
+      }
+    }
+  ]
+}                                   
+                    </code></pre>
+                    </section>
+                    <section data-transition="none">
+                    <h2>GeoJson</h2>              
+                    <pre><code data-trim data-noescape class="json atom-one-dark fill">
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "address": {
+          "line1": "5445 Legacy Dr #100",
+          "city": "Plano",
+          "state": "TX",
+          "zipCode": "75024"
+        },
+        "name": "JavaMUG"
+      },
+      <mark>"geometry": {</mark>
+        <mark>"type": "Point",</mark>
+        <mark>"coordinates": [</mark>
+          <mark>-96.809917,</mark>
+          <mark>33.077759</mark>
+        <mark>]</mark>
+      <mark>}</mark>
+    }
+  ]
+}                                   
+                    </code></pre>
+                    </section>
+                    <section data-transition="none">
+                    <h2>GeoJson</h2>              
+                    <pre><code data-trim data-noescape class="json atom-one-dark fill">
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      <mark>"properties": {</mark>
+        "address": {
+          "line1": "5445 Legacy Dr #100",
+          "city": "Plano",
+          "state": "TX",
+          "zipCode": "75024"
+        },
+        "name": "JavaMUG"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.809917,
+          33.077759
+        ]
+      }
+    }
+  ]
+}                                   
+                    </code></pre>
+                    </section>
+                    <section data-transition="none">
+                    <h2>GeoJson</h2>              
+                    <pre><code data-trim data-noescape class="json atom-one-dark fill">
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "address": {
+          "line1": "5445 Legacy Dr #100",
+          "city": "Plano",
+          "state": "TX",
+          "zipCode": "75024"
+        },
+        <mark>"name": "JavaMUG"</mark>
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.809917,
+          33.077759
+        ]
+      }
+    }
+  ]
+}                                   
+                    </code></pre>
+                    </section>
+                    <section data-transition="none">
+                    <h2>GeoJson</h2>              
+                    <pre><code data-trim data-noescape class="json atom-one-dark fill">
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        <mark>"address": {</mark>
+          <mark>"line1": "5445 Legacy Dr #100",</mark>
+          <mark>"city": "Plano",</mark>
+          <mark>"state": "TX",</mark>
+          <mark>"zipCode": "75024"</mark>
+        <mark>},</mark>
+        "name": "JavaMUG"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.809917,
+          33.077759
+        ]
+      }
+    }
+  ]
+}                                   
+                    </code></pre>
+                    </section>
+                    <section><h1>code</h1></section>                    
+                </section>
+                <section>
+                    <section>
+                        <h2>How do we persist our data</h2>
+                        <ul>
+                           <li>Flat files</li>
+                           <li>PostGIS - Postgres</li>
+                           <li>MongoDB</li>
+                           <li>ElasticSearch</li>
+                        </ul>
+                    </section>                        
+                    <section>
+                        <h2>elasticsearch</h2>
+                        <pre><code data-trim data-noescape class="java atom-one-dark fill">
+@Override
+public Object save(Place place) throws JsonProcessingException {
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.registerModule(new JodaModule());
+    mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+    if (place.getId() == null) {
+        place.setId(UUID.randomUUID().toString());
+    }
+    
+    IndexResponse response = elasticsearchClient.prepareIndex("geospatial", "place", place.getId())
+            .setSource(mapper.writeValueAsBytes(place))
+        .get();
+    return response;
+}
+                        </code></pre>
+                    </section>                        
+                    <section>
+                        <h2>elasticsearch</h2>
+                        <pre><code data-trim data-noescape class="json atom-one-dark fill">
+"location": {
+  "properties": {
+    "coordinates": {
+      "type": "float"
+    },
+    "type": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    }
+  }
+},
+                        </code></pre>
+                    </section>                        
+                    <section>
+                        <h2>elasticsearch</h2>
+                        <pre><code data-trim data-noescape class="json atom-one-dark fill">
+"location": {
+  "properties": {
+    "loc": {
+      <mark>"type": "geo_point"</mark>
+    }
+  }
+},
+                        </code></pre>
+                    </section>                        
+                    <section>
+                        <h2>elasticsearch</h2>
+                        <pre><code data-trim data-noescape class="java atom-one-dark fill">
+@Override
+public List<Airport> getAirportsByBoundingBox(SearchCriteria searchCriteria) {
+    List<Airport> airports = new ArrayList<Airport>();
+    
+    QueryBuilder qb = QueryBuilders.geoBoundingBoxQuery("geography.loc") 
+        .setCorners(searchCriteria.getBoundingBox().getNorth(),
+            searchCriteria.getBoundingBox().getWest(),
+            searchCriteria.getBoundingBox().getSouth(),
+            searchCriteria.getBoundingBox().getEast());
+    SearchResponse response = elasticsearchClient.prepareSearch().setQuery(qb).setSize(searchCriteria.getMaxHits()).execute().actionGet();
+    SearchHits hits = response.getHits();
+    for (SearchHit hit : hits.getHits()) {
+        airports.add(hitToAirport(hit));
+    }
+    
+    return airports;
+}
+                        </code></pre>
+                    </section>                        
+                </section>
+                <section>
+                    <h2>How to display our data with mapbox</h2>
+                    <div class="fragment">
+                    <pre><code data-trim data-noescape class="javascript atom-one-dark fill">
+mapboxgl.accessToken = 'your_token';
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/brentlemons/yourstyle',
+  center: [-98.58333333, 39.83333333],
+  zoom: 3
+});
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code data-trim data-noescape class="javascript atom-one-dark fill">
+var sources = {
+  airports: new mapboxgl.GeoJSONSource({
+    data: { type: 'FeatureCollection', features: [] }
+  })
+};
+                    </code></pre>
+                    </div>
+                    <div class="fragment">
+                    <pre><code data-trim data-noescape class="javascript atom-one-dark fill">
+map.on('style.load', function () {
+  map.addSource('airports', sources.airports);
+  map.addLayer({
+    'id': 'airports',
+    'type': 'circle',
+    'source': 'airports',
+    'interactive': true,
+  });
+});
+                    </code></pre>
+                    </div>
+                </section>
+                <section>
+                    <h2>Questions?</h2>
+                    <div>GitHub: brentlemons</div>
+                    <div>Twitter: @brentlemons</div>
                 </section>
 			</div>
 		</div>

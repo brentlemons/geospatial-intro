@@ -1,0 +1,9 @@
+mapbox:
+  key: pk.eyJ1IjoiZmx0Y2siLCJhIjoiY2l3ZG42ODJyMGFwZjJvdGRiODVqbHRqMyJ9.RGPqx8887r0IKsn9ixmDUg
+  uri: https://api.mapbox.com/geocoding/v5/mapbox.places/{address}.json?access_token={mapboxToken}
+  
+elasticsearch:
+  host: localhost
+  port: 9300
+  index: airspace
+  type: airports

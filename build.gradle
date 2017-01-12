@@ -29,5 +29,12 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-web-services')
+    compile group: 'org.elasticsearch', name: 'elasticsearch', version: '5.0.0'
+    compile group: 'org.elasticsearch.client', name: 'transport', version: '5.0.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.6.2' //2.6.2 required by elasticsearch 5
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.6.2'
+    compile group: 'de.grundid.opendatalab', name: 'geojson-jackson', version: '1.6'
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-joda', version: '2.5.5'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

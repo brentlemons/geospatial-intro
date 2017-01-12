@@ -1332,3 +1332,24 @@ body {
 .reveal pre {
 	font-size: 26px;
 }
+
+.reveal .mono {
+	font-family: monospace;
+}
+
+.reveal blockquote {
+	color: #2a76dd;
+}
+
+.reveal .smallfont {
+	font-size: .7em;
+}
+
+.reveal .alignright {
+	text-align: right;
+}
+
+.reveal .fill {
+	height: 100%;
+	max-height: unset;
+}
